@@ -1,8 +1,8 @@
 # BidHub — Arquitectura del Backend
 
-> **Versión:** 2.0 · **Fase:** 2 — Estructura y contratos definidos  
+> **Versión:** 2.1 · **Fase:** 3 — Prisma integrado; servicios de negocio pendientes
 > **Fecha:** 2026-10-26  
-> **Estado:** Contratos de API listos. Implementación pendiente en Fase 3.
+> **Estado:** Prisma, schema y migración inicial preparados. Servicios de negocio y conexión remota pendientes.
 
 ---
 
@@ -33,8 +33,9 @@ Data Access      →  Repositories    (src/features/*/repositories → Prisma �
 ```
 bidhub/
 ├── prisma/
-│   ├── schema.prisma           # Esquema base (modelos pendientes Fase 3)
-│   └── seed.ts                 # Seed: categorías + admin (pendiente Fase 3)
+│   ├── schema.prisma           # Modelos PostgreSQL y relaciones
+│   ├── seed.ts                 # Seed idempotente (fixtures opt-in)
+│   └── migrations/             # Migración inicial preparada, sin aplicar
 ├── prisma.config.ts            # Prisma 7: datasource + migrations
 ├── scripts/
 │   └── check-structure.mjs    # Verificador de estructura
@@ -44,7 +45,7 @@ bidhub/
 ├── src/
 │   ├── types/index.ts         # PaginatedResult, SortOrder, ApiResponseMeta
 │   ├── lib/
-│   │   ├── db/index.ts        # Singleton PrismaClient
+│   │   ├── db/index.ts        # Prisma Client + adapter PostgreSQL, singleton HMR
 │   │   ├── env/index.ts       # Validación vars de entorno (Zod)
 │   │   ├── errors/index.ts    # AppError y subclases
 │   │   ├── http/index.ts      # apiResponse, handleHttpError, HttpStatus
