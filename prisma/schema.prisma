@@ -1,0 +1,13 @@
+// ==============================================================================
+// BIDHUB - PRISMA SCHEMA BASE
+// ==============================================================================
+// Configuración base para PostgreSQL en Supabase con Connection Pooling.
+// Los modelos definitivos se diseñarán en la siguiente fase tras validar el esquema.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
